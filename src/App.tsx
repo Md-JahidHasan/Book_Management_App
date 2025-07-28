@@ -1,15 +1,16 @@
 
+import { Outlet } from 'react-router-dom'
 import './App.css'
-import { Button } from './components/ui/button'
-import BookList from './pages/books/BookList'
+import Navbar from './components/navbar/Navbar'
+
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      <Button className='text-green-400'>TEst</Button>
-      <BookList></BookList>
+      <Navbar></Navbar>
+      <Outlet></Outlet>
     </>
   )
 }

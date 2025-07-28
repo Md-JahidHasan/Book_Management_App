@@ -32,11 +32,12 @@ export const bookApi = createApi({
           query: ({ id, data }) => ({
               url: `/books/${id}`,
               method: 'PATCH',
-              body: data
-          })
+              body: data,
+          }),
+          invalidatesTags:  ["Books"]
       })
   }),
 });
 
 
-export const {useGetBooksQuery, useAddBookMutation} = bookApi;
+export const {useGetBooksQuery, useAddBookMutation, useGetBookQuery} = bookApi;
