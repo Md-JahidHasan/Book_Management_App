@@ -1,70 +1,69 @@
-# React + TypeScript + Vite
+📚 Library Management App
+A full-stack Library Management System built with React, Redux Toolkit Query, TypeScript, Node.js, Express, and MongoDB. This system allows users to view, add, update, and manage books efficiently through an interactive and responsive interface.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Live Demo: https://library-management-app-steel.vercel.app/
 
-Currently, two official plugins are available:
+🛠️ Tech Stack
+Frontend:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React
 
-## Expanding the ESLint configuration
+TypeScript
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Redux Toolkit Query
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Tailwind CSS
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Shadcn UI
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Vite
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Backend:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Node.js
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# Book_Management_App
+Express.js
+
+MongoDB
+
+Mongoose
+
+TypeScript
+
+✨ Features
+✅ Responsive UI with custom color palette
+✅ View all books with filters
+✅ Add new books
+✅ Edit book details
+✅ Delete books
+✅ Realtime status updates (e.g., available copies)
+✅ API validation with robust error handling
+✅ Clean and scalable code structure
+
+
+
+🖼️ Replace placeholders with your real screenshots once ready.
+
+🔗 API Endpoints (Sample)
+Method	Endpoint	Description
+GET	/books	Get all books
+GET	/books/:id	Get a specific book
+POST	/books	Add a new book
+PATCH	/books/:id	Update book info
+DELETE	/books/:id	Delete a book
+
+🚀 Getting Started (Local Setup)
+Clone the repository
+
+bash
+Copy
+Edit
+git clone https://github.com/Md-JahidHasan/Book_Management_App.git
+cd library-management-app
+
+npm install
+Configure environment variables
+
+Create a .env file in the server folder with:
+
+
