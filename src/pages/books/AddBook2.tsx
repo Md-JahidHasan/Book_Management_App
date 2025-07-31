@@ -24,6 +24,15 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { PlusCircle } from "lucide-react";
 
+const genreOptions = [
+  "FICTION",
+  "NON_FICTION",
+  "SCIENCE",
+  "HISTORY",
+  "BIOGRAPHY",
+  "FANTASY",
+];
+
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
   author: z.string().min(1, "Author is required"),
@@ -74,8 +83,9 @@ export default function AddBook2() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
        
-          <PlusCircle className="w-8 h-8" />
-       
+          <PlusCircle className="w-7 h-7" />
+          
+        
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[500px]">
@@ -85,6 +95,7 @@ export default function AddBook2() {
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* Title */}
             <FormField
               control={form.control}
               name="title"
@@ -99,6 +110,7 @@ export default function AddBook2() {
               )}
             />
 
+            {/* Author */}
             <FormField
               control={form.control}
               name="author"
@@ -113,6 +125,7 @@ export default function AddBook2() {
               )}
             />
 
+            {/* Genre - now select field */}
             <FormField
               control={form.control}
               name="genre"
@@ -120,13 +133,24 @@ export default function AddBook2() {
                 <FormItem>
                   <FormLabel>Genre</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter genre" {...field} />
+                    <select
+                      {...field}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D3A376] text-sm"
+                    >
+                      <option value="">Select a genre</option>
+                      {genreOptions.map((genre) => (
+                        <option key={genre} value={genre}>
+                          {genre.replace("_", " ")}
+                        </option>
+                      ))}
+                    </select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
+            {/* ISBN */}
             <FormField
               control={form.control}
               name="isbn"
@@ -141,6 +165,7 @@ export default function AddBook2() {
               )}
             />
 
+            {/* Description */}
             <FormField
               control={form.control}
               name="description"
@@ -158,6 +183,7 @@ export default function AddBook2() {
               )}
             />
 
+            {/* Copies */}
             <FormField
               control={form.control}
               name="copies"

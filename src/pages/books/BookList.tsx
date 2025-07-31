@@ -115,9 +115,9 @@ export default function BookList() {
         {/* Book Grid */}
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {filteredBooks?.map((book) => {
-            const isNew = books.data
-              .slice(0, 5)
-              .some((b) => b._id === book._id);
+            // const isNew = books.data
+            //   .slice(0, 5)
+            //   .some((b) => b._id === book._id);
             return (
               <div
                 key={book._id}
@@ -125,7 +125,7 @@ export default function BookList() {
               >
                 {/* Badges */}
                 {!book.available && (
-                  <span className="absolute top-3 right-3 bg-red-400 text-white text-xs font-semibold px-2 py-2 rounded flex items-center gap-1">
+                  <span className="absolute top-3 right-3 bg-red-400 text-white text-xs font-semibold px-2 py-2 rounded-2xl flex items-center gap-1">
                     <BadgeAlert className="w-3 h-3" />
                     Unavailable
                   </span>
@@ -172,10 +172,9 @@ export default function BookList() {
                     className={cn("flex justify-center ")}
                   >
                     <BorrowBook bookId={book._id} />
-                  </button>: 
-                    <span className="absolute top-3 right-3 bg-red-400 text-white text-xs font-semibold px-2 py-2 rounded flex items-center gap-1">
-                      <BadgeAlert className="w-3 h-3" />
-                      Unavailable
+                  </button> : 
+                    <span className=" bg-red-400 text-white text-xs font-semibold px-2 py-2 rounded-md m-auto gap-1">
+                      Stock Out
                     </span>
                   }
                   
@@ -192,7 +191,7 @@ export default function BookList() {
                                   },
                                 });
                     }}
-                    className="flex items-center justify-center text-red-500 hover:text-red-600 rounded-lg p-0 transition"
+                    className="flex items-center justify-end text-red-500 hover:text-red-600 rounded-lg w-4  transition "
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
