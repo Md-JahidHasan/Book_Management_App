@@ -4,6 +4,7 @@ import {
   useUpdateBookMutation,
 } from "../../redux/features/book/bookApi";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const EditBook = () => {
   const { id } = useParams();
@@ -56,6 +57,16 @@ const EditBook = () => {
       id: id!,
       data: { ...formData, available: formData.copies > 0 },
     });
+      toast("Data updated successfully!", {
+          duration: 2000,
+          position: 'top-center',
+          style: {
+              marginTop: '30%',
+              background: 'green',
+              color: 'white'
+          }
+      },);
+
     navigate("/books");
   };
 

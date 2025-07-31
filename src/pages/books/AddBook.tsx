@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -53,7 +54,16 @@ export default function AddBook() {
     try {
       await addBook(data).unwrap();
       form.reset(); // Clear form after successful submission
-      setOpen(false); // Close dialog
+        setOpen(false); // Close dialog
+        toast(`${data.title} added successfully!`, {
+          duration: 2000,
+          position: "top-center",
+          style: {
+            marginTop: "30%",
+            background: "green",
+            color: "white",
+          },
+        });
     } catch (err) {
       console.error("Error adding book:", err);
     }
