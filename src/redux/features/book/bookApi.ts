@@ -19,7 +19,8 @@ export const bookApi = createApi({
         url: "/books/create-book",
         method: "POST",
         body: bookData,
-      }),
+        }),
+        invalidatesTags:['Books']
     }),
 
     //   Get a book by id

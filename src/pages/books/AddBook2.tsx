@@ -35,7 +35,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function AddBook() {
+export default function AddBook2() {
   const [open, setOpen] = useState(false);
   const [addBook] = useAddBookMutation();
 
@@ -55,16 +55,16 @@ export default function AddBook() {
     try {
       await addBook(data).unwrap();
       form.reset(); // Clear form after successful submission
-        setOpen(false); // Close dialog
-        toast(`${data.title} added successfully!`, {
-          duration: 2000,
-          position: "top-center",
-          style: {
-            marginTop: "30%",
-            background: "green",
-            color: "white",
-          },
-        });
+      setOpen(false); // Close dialog
+      toast(`${data.title} added successfully!`, {
+        duration: 2000,
+        position: "top-center",
+        style: {
+          marginTop: "30%",
+          background: "green",
+          color: "white",
+        },
+      });
     } catch (err) {
       console.error("Error adding book:", err);
     }
@@ -73,13 +73,9 @@ export default function AddBook() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex items-center space-x-2 text-white hover:text-[#FFE0B2]"
-        >
-          <PlusCircle className="w-5 h-5" />
-          <span className="hidden sm:inline">Add Book</span>
-        </Button>
+       
+          <PlusCircle className="w-8 h-8" />
+       
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[500px]">
