@@ -7,6 +7,15 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 
+const genreOptions = [
+  "FICTION",
+  "NON_FICTION",
+  "SCIENCE",
+  "HISTORY",
+  "BIOGRAPHY",
+  "FANTASY",
+];
+
 const EditBook = () => {
   const { id } = useParams();
   const { data: book, isLoading } = useGetBookQuery(id!);
@@ -36,7 +45,9 @@ const EditBook = () => {
   }, [book]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -104,7 +115,6 @@ const EditBook = () => {
           {[
             { label: "Title (title)", name: "title", type: "text" },
             { label: "Author (author)", name: "author", type: "text" },
-            { label: "Genre (genre)", name: "genre", type: "text" },
             { label: "ISBN (isbn)", name: "isbn", type: "text" },
             { label: "Copies (copies)", name: "copies", type: "number" },
           ].map((field) => (
@@ -122,6 +132,26 @@ const EditBook = () => {
               />
             </div>
           ))}
+
+          {/* Genre Select Dropdown */}
+          <div className="space-y-1">
+            <label className="block text-sm font-medium text-[#3E2522]">
+              Genre (genre)
+            </label>
+            <select
+              name="genre"
+              value={formData.genre}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg border border-[#8C6E63] bg-[#FFF2DF] focus:outline-none focus:ring-2 focus:ring-[#D3A376]"
+            >
+              <option value="">Select Genre</option>
+              {genreOptions.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div className="space-y-1">
             <label className="block text-sm font-medium text-[#3E2522]">

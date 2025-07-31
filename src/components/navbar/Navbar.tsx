@@ -1,14 +1,6 @@
 import { Link } from "react-router-dom";
-import { BookOpen, PlusCircle, ClipboardList } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
+import { BookOpen, ClipboardList } from "lucide-react";
+
 import AddBook from "@/pages/books/AddBook";
 // import AddBook from "@/pages/AddBook";
 

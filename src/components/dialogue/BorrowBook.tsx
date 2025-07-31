@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import {
   useBorrowBookMutation,
@@ -19,7 +19,7 @@ import { Label } from "@/components/ui/label";
 
 
 type BorrowBookProps = {
-  bookId: string; // or `id: any` if unsure
+  bookId: any; // or `id: any` if unsure
 };
 
 const BorrowBook: React.FC<BorrowBookProps> = ({ bookId }) => {

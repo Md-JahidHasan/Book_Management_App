@@ -49,7 +49,7 @@ export default function AddBook2() {
   const [addBook] = useAddBookMutation();
 
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema) as any,
     defaultValues: {
       title: "",
       author: "",

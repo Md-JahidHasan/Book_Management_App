@@ -42,14 +42,18 @@ const formSchema = z.object({
   copies: z.coerce.number().min(0, "Must be at least 0"),
 });
 
-type FormData = z.infer<typeof formSchema>;
+// Infer raw schema type
+type RawFormData = z.infer<typeof formSchema>;
+
+// Override copies type from unknown to number explicitly
+type FormData = Omit<RawFormData, "copies"> & { copies: number };
 
 export default function AddBook() {
   const [open, setOpen] = useState(false);
   const [addBook] = useAddBookMutation();
 
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema) as any,
     defaultValues: {
       title: "",
       author: "",
@@ -59,6 +63,8 @@ export default function AddBook() {
       copies: 1,
     },
   });
+    
+    
 
   const onSubmit = async (data: FormData) => {
     try {

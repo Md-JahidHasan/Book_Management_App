@@ -3,20 +3,19 @@ import {
   useDeleteBookMutation,
   useGetBooksQuery,
 } from "@/redux/features/book/bookApi";
-import { Link, useNavigate } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/autoplay";
+import { useNavigate } from "react-router-dom";
 
-import { Pencil, Trash2, Plus, BadgeAlert } from "lucide-react";
+// import "swiper/css/autoplay";
+
+import { Pencil, Trash2, BadgeAlert } from "lucide-react";
 import BorrowBook from "@/components/dialogue/BorrowBook";
 import Loading from "@/components/loading/Loading";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import AddBook from "./AddBook";
+
 import AddBook2 from "./AddBook2";
 import toast from "react-hot-toast";
+import type { IBook } from "@/types/types";
+import HeroCarousel from "@/components/heroCarousel/HeroCarousel";
 
 export default function BookList() {
   const { data: books, isLoading, error } = useGetBooksQuery(undefined);
@@ -28,7 +27,7 @@ export default function BookList() {
   if (error) return <div className="text-red-500">Failed to load books.</div>;
 
   // Filter logic
-  const filteredBooks = books?.data?.filter((book) => {
+  const filteredBooks = books?.data?.filter((book: IBook)=> {
     const term = search.toLowerCase();
     return (
       book.title.toLowerCase().includes(term) ||
@@ -57,64 +56,11 @@ export default function BookList() {
         </div>
 
         {/* Hero Section - Carousel */}
-        <div
-          className="rounded-xl overflow-hidden p-4 mb-10 relative"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1470&q=80')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-            backgroundRepeat: "no-repeat",
-            minHeight: "420px",
-          }}
-        >
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
-            loop={true}
-            autoplay={{ delay: 4000, disableOnInteraction: false }}
-            speed={1000}
-            className="rounded-lg overflow-hidden shadow-xl"
-            style={{ height: "400px" }}
-          >
-            {books.data.slice(0, 5).map((book) => (
-              <SwiperSlide key={book._id}>
-                <div className="relative h-full flex items-center justify-center">
-                  <img
-                    src={
-                      book.image ||
-                      `https://source.unsplash.com/1200x600/?books,${encodeURIComponent(
-                        book.title
-                      )}`
-                    }
-                    alt={book.title}
-                    className="absolute inset-0 w-full h-full object-cover rounded-xl brightness-[0.4]"
-                  />
-                  <div className="relative z-10 text-center text-white max-w-xl px-6">
-                    <h3 className="text-4xl font-bold text-[#FFE0B2] drop-shadow-lg">
-                      {book.title}
-                    </h3>
-                    <p className="text-lg text-[#FFF2DF] mt-2 mb-4 drop-shadow">
-                      {book.author}
-                    </p>
-                    <Link
-                      to={`/books/${book._id}`}
-                      className="inline-block px-6 py-3 bg-[#D3A376] text-[#3E2522] font-semibold rounded-xl shadow-md hover:bg-[#FFE0B2] transition duration-300"
-                    >
-                      View Details
-                    </Link>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <HeroCarousel></HeroCarousel>
 
         {/* Book Grid */}
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredBooks?.map((book) => {
+          {filteredBooks?.map((book: IBook) => {
             // const isNew = books.data
             //   .slice(0, 5)
             //   .some((b) => b._id === book._id);
@@ -168,11 +114,9 @@ export default function BookList() {
                   >
                     <Pencil className="w-4 h-4" />
                   </button>
-                  {book.available ? <button
-                    className={cn("flex justify-center ")}
-                  >
+                  {book.available ? 
                     <BorrowBook bookId={book._id} />
-                  </button> : 
+                  : 
                     <span className=" bg-red-400 text-white text-xs font-semibold px-2 py-2 rounded-md m-auto gap-1">
                       Stock Out
                     </span>
@@ -181,7 +125,7 @@ export default function BookList() {
                   <button
                             onClick={() => {
                                 deleteBook(book._id!);
-                                toast("Data updated successfully!", {
+                                toast("Data deleted successfully!", {
                                   duration: 2000,
                                   position: "top-center",
                                   style: {

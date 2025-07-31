@@ -4,6 +4,7 @@ import { useGetBorrowSummaryQuery } from "@/redux/features/book/bookApi";
 import { useEffect } from "react";
 import { BookOpen, Calendar, CopyCheck } from "lucide-react";
 
+
 const BorrowSummary = () => {
   const {
     data: borrowList,
@@ -49,7 +50,7 @@ const BorrowSummary = () => {
         📖 Borrow Summary
       </h2>
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {borrowList.data.map((borrow, index) => (
+        {borrowList.data.map((borrow: any, index: any) => (
           <Card
             key={index}
             className="bg-white rounded-2xl border border-[#8C6E63] shadow-xl hover:scale-[1.02] transition-transform duration-300"
